@@ -1,6 +1,7 @@
 #pragma once
-
 #include "../Framework/Engine/Scene.h"
+#include "ModelManager.h"
+
 
 class MyScene :
 	public Scene
@@ -12,5 +13,6 @@ public:
 private:
 	void Initialise();
 	void Projection();
+	void addSpider(ModelManager* mm);
 
 };

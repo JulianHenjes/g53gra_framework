@@ -1,10 +1,11 @@
 #include "Limb.h"
 #include "../Engine/Engine.h"
 #include <iostream>
+#define PI 3.14159265358979323846
 
 //The "limb" of a more complex model, but can be used in isolation as a prop
 
-Limb::Limb(const GLfloat* vertices_, const int* faces_, const GLfloat* normals_, int vertex_count_, int face_count_, GLuint texID_, const GLfloat* uvs_) :
+Limb::Limb(const GLfloat* vertices_, const int* faces_, const GLfloat* normals_, int vertex_count_, int face_count_, GLuint texID_, const GLfloat* uvs_, const double* anim_) :
 	DisplayableObject()
 
 {
@@ -15,22 +16,71 @@ Limb::Limb(const GLfloat* vertices_, const int* faces_, const GLfloat* normals_,
 	face_count = face_count_;
 	uvs = uvs_;
 	texID = texID_;
+	animation = anim_;
 }
 
+
+void Limb::addLimb(Limb* limb) {
+	children.push_back(limb);
+}
+
+void Limb::setAnimSpeed(double animSpeed_) {
+	animSpeed = animSpeed_;
+}
+
+void Limb::setIgnoreLight(bool ignoreLight_)
+{
+	ignoreLight = ignoreLight_;
+}
+
+void Limb::Update(const double& deltaTime)
+{
+	//Progress animation
+	animTimer = animTimer + deltaTime*animSpeed;
+
+	while (animTimer > 99) {
+		animTimer = animTimer - 100;
+		if (animTimer < 0)
+			animTimer = 0;
+	}
+
+	//Get nearest frame
+	int frame = round(animTimer);
+
+	const double* framePtr = animation + (frame * 3);
+	rotation[0] = (*framePtr);
+	rotation[1] = *(framePtr + 1);
+	rotation[2] = *(framePtr + 2);
+
+	//Loop through child limbs and update transforms
+	for (std::size_t i = 0; i < children.size(); ++i) {
+		children[i]->Update(deltaTime);
+	}
+
+	//std::cout << frame << std::endl;
+	//std::cout << framePtr << std::endl;
+	//std::cout << rotation[0] << "," << rotation[1] << "," << rotation[2] << std::endl;
+	//std::cout << *(framePtr+2) << std::endl;
+}
 
 void Limb::Display() {
 
 	//Set rotation for object
 	glPushMatrix();
+	glTranslatef(pos[0], pos[1], pos[2]);
 	glRotatef(rotation[0], 1, 0, 0);
 	glRotatef(rotation[1], 0, 1, 0);
 	glRotatef(rotation[2], 0, 0, 1);
-
 
 	//Set Material Properties
 	glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse);
 	glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
 	glMaterialfv(GL_FRONT, GL_SHININESS, shininess);
+
+	if (ignoreLight) {
+		glDisable(GL_LIGHT0);
+		glEnable(GL_LIGHT1);
+	}
 
 	//Faces and vertices and UV
 	int vi[3];
@@ -85,7 +135,7 @@ void Limb::Display() {
 			//Draw vertex
 			glNormal3f(n1, n2, n3);
 			glTexCoord2f(u,v);
-			glVertex3f(v1 * scale[0] + pos[0], v2 * scale[1] + pos[1], v3 * scale[2] + pos[2]);
+			glVertex3f(v1 * scale[0], v2 * scale[1], v3 * scale[2]);
 
 		}
 
@@ -98,10 +148,15 @@ void Limb::Display() {
 	glDisable(GL_TEXTURE_2D);
 
 	//Loop through child limbs and draw
-
 	for (std::size_t i = 0; i < children.size(); ++i) {
 		children[i]->Display();
 	}
+
+	if (ignoreLight) {
+		glDisable(GL_LIGHT1);
+		glEnable(GL_LIGHT0);
+	}
+
 
 	glPopMatrix();
 

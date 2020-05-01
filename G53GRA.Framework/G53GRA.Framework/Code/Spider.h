@@ -1,20 +1,17 @@
 #pragma once
 #include "../Framework/Interface/DisplayableObject.h"
-#include "Animation.h"
+#include "../Framework/Interface/Animation.h"
 #include "Limb.h"
-#include <map>
 
-class GObj :
+class Spider :
 	public DisplayableObject, public Animation
 {
 public:
-	GObj();
-	void addLimb(Limb* limb);
+	Spider(Limb* model_);
 	void Display();
 	void Update(const double& deltaTime);
-
 private:
-	//Limbs stored in vector
-	std::vector<Limb*> limbs = {};
+	Limb* model;
+	double animProgress = 0;
 };
 

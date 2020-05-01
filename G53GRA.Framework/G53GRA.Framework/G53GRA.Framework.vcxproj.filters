@@ -39,10 +39,10 @@
     <ClCompile Include="Code\Limb.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Code\GObj.cpp">
+    <ClCompile Include="Code\ModelManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Code\ModelManager.cpp">
+    <ClCompile Include="Code\Spider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -80,10 +80,10 @@
     <ClInclude Include="Code\Limb.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Code\GObj.h">
+    <ClInclude Include="Code\ModelManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Code\ModelManager.h">
+    <ClInclude Include="Code\Spider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

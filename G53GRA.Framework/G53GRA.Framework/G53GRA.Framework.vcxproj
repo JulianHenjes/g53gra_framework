@@ -15,8 +15,8 @@
     <ClCompile Include="Framework\Utility\Texture.cpp" />
     <ClCompile Include="Code\Prop.cpp" />
     <ClCompile Include="Code\Limb.cpp" />
-    <ClCompile Include="Code\GObj.cpp" />
     <ClCompile Include="Code\ModelManager.cpp" />
+    <ClCompile Include="Code\Spider.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\MyScene.h" />
@@ -30,8 +30,8 @@
     <ClInclude Include="Framework\Utility\VectorMath.h" />
     <ClInclude Include="Code\Prop.h" />
     <ClInclude Include="Code\Limb.h" />
-    <ClInclude Include="Code\GObj.h" />
     <ClInclude Include="Code\ModelManager.h" />
+    <ClInclude Include="Code\Spider.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\..\texture_fur.bmp" />
