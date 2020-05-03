@@ -21,6 +21,8 @@ public:
 	void defineSpider();
 	void defineGround();
 	void defineSkybox();
+	void defineBeachBall();
+	void defineMechanism();
 private:
 	
 	//Maps for storing pointers and model data meta information

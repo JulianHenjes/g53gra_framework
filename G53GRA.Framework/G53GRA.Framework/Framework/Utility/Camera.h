@@ -23,6 +23,8 @@ public:
 	Camera();
 	virtual ~Camera(){};
 
+	void setViewBirdsEye();
+
 	// These functions can be called to get the position/view direction/camera axis of the camera in world space
 	void GetEyePosition(float &x, float &y, float &z) const;
 	void GetViewDirection(float &x, float &y, float &z) const;

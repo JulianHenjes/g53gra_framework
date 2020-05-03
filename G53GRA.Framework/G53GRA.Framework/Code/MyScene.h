@@ -12,6 +12,8 @@ public:
 
 private:
 	void Initialise();
+	void addMechanism(ModelManager* mm);
+	void addBeachBall(ModelManager* mm);
 	void Projection();
 	void addSpider(ModelManager* mm);
 

@@ -34,6 +34,17 @@ void Camera::Reset(){
 	up[2] = 0.0f;
 }
 
+
+//I couldn't find an elegant way to add extra camera functionality so I'm adding it directly into
+//the Camera class
+void Camera::setViewBirdsEye() {
+	//Set the camera position to above the origin
+	eyePosition[0] = 0.0f;
+	eyePosition[1] = 600.0f;
+	eyePosition[2] = 0.0f;
+
+}
+
 void Camera::SetViewport()
 {
 	glViewport(static_cast<GLint>(0), static_cast<GLint>(0), static_cast<GLsizei>(Scene::GetWindowWidth()), static_cast<GLsizei>(Scene::GetWindowHeight()));
@@ -51,7 +62,7 @@ void Camera::SetupCamera()
 
 void Camera::Update(const double& deltaTime)
 {
-	float speed = 0.1f;//1.0f Default
+	float speed = 4.0f;//1.0f Default
 
 	if (aKey)
 		sub(eyePosition, right, speed);
@@ -125,6 +136,9 @@ void Camera::HandleKey(unsigned char key, int state, int x, int y)
 			break;
 		case ' ':
 			Reset();
+			break;
+		case '1':
+			setViewBirdsEye();
 		default:
 			break;
 	}

@@ -45,6 +45,12 @@
     <ClCompile Include="Code\Spider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Code\BeachBall.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Mechanism.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\Engine\Engine.h">
@@ -86,9 +92,18 @@
     <ClInclude Include="Code\Spider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Code\BeachBall.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Mechanism.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\..\texture_fur.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\texture_skybox.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
